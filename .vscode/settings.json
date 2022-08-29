@@ -1,0 +1,19 @@
+{
+  "prettier.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "editor.formatOnSave": false,
+  "cSpell.words": [
+    "histoire",
+    "iconify",
+    "Nuxt",
+    "nuxtjs",
+    "pinia",
+    "twemoji",
+    "vueuse"
+  ]
+}

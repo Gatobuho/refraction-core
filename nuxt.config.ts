@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from 'nuxt'
 // import { HstNuxt } from '@histoire/plugin-nuxt'
 
 export default defineNuxtConfig({
@@ -9,10 +8,10 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
   ],
   css: [
+    'anu-vue/dist/style.css',
     '@/assets/main.scss',
   ],
   experimental: {
-    reactivityTransform: true,
     viteNode: false,
   },
   unocss: {

@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/10366059/207662097-031385a2-4fb1-4645-a370-4b335b90de45.png" width="600" alt="Refraction_logo_notion"/>
+<img src="https://user-images.githubusercontent.com/10366059/207662097-031385a2-4fb1-4645-a370-4b335b90de45.png" width="300" alt="Refraction_logo_notion"/>
 </p>
 
 ## Refraction

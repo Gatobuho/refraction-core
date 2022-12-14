@@ -26,7 +26,7 @@ A base schafolding for web projects based in [Vitesse-nuxt3](https://github.com/
 
 - 🦾 [TypeScript](https://www.typescriptlang.org), of course
 
-- :data: ORM via [Prisma.io](https://www.prisma.io)
+- :books: ORM via [Prisma.io](https://www.prisma.io)
 
 
 

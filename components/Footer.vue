@@ -1,13 +1,9 @@
 <template>
-  <div
-    text="xl gray4"
-    m-5
-    flex
-    justify-center
-    gap-3
-  >
-    <NuxtLink i-carbon-campsite to="/" />
-    <a i-carbon-logo-github href="https://github.com/antfu/vitesse-nuxt3" target="_blank" />
-    <DarkToggle />
-  </div>
+  <footer class="p-6 bg-slate-600 text-center">
+    <p>
+      Desarrollado con <span class="animate-pulse text-pink-500 heart">❤</span> por <a href="https://gatobuho.com/" target="_blank" class="underline hover:text-emerald-300">
+        Gatobuho
+      </a>
+    </p>
+  </footer>
 </template>

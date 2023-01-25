@@ -2,10 +2,12 @@
 
 export default defineNuxtConfig({
   modules: [
-    '@vueuse/nuxt',
-    '@unocss/nuxt',
-    '@pinia/nuxt',
+    '@nuxt/image-edge',
     '@nuxtjs/color-mode',
+    '@nuxtjs/supabase',
+    '@pinia/nuxt',
+    '@unocss/nuxt',
+    '@vueuse/nuxt',
   ],
   css: [
     'anu-vue/dist/style.css',
@@ -30,7 +32,5 @@ export default defineNuxtConfig({
       }
     },
   },
-  plugins: [
-    // HstNuxt(),
-  ],
+  plugins: [],
 })

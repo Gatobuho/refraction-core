@@ -8,11 +8,13 @@
   },
   "editor.formatOnSave": false,
   "cSpell.words": [
+    "headlessui",
     "histoire",
     "iconify",
     "Nuxt",
     "nuxtjs",
     "pinia",
+    "supabase",
     "twemoji",
     "vueuse"
   ]

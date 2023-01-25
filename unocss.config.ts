@@ -25,7 +25,7 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       extraProperties: {
-        height: '1.5em',
+        'height': '1.5em',
         'flex-shrink': '0',
         'display': 'inline-block',
       },

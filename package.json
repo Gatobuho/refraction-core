@@ -13,8 +13,11 @@
     "@histoire/plugin-nuxt": "^0.10.7",
     "@iconify-json/bx": "^1.1.5",
     "@iconify-json/carbon": "^1.1.11",
+    "@iconify-json/ri": "^1.1.4",
     "@iconify-json/twemoji": "^1.1.7",
+    "@nuxt/image-edge": "1.0.0-27840416.dc1ed65",
     "@nuxtjs/color-mode": "^3.2.0",
+    "@nuxtjs/supabase": "^0.3.0",
     "@pinia/nuxt": "^0.3.1",
     "@unocss/nuxt": "^0.45.30",
     "@vueuse/nuxt": "^9.6.0",
@@ -25,6 +28,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.7",
     "@prisma/client": "^4.7.1",
     "anu-vue": "^0.10.0",
     "motion": "^10.15.3",

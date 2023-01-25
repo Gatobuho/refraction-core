@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useGeneralStore } from '@/composables/general'
+
+const generalState = useGeneralStore()
+
+const { hasModal } = storeToRefs(generalState)
 useHead({
   title: 'Vitesse Nuxt 3',
   link: [
@@ -13,6 +19,14 @@ const documentHeight = () => {
   const doc = document.documentElement
   doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
 }
+watch(hasModal, (val) => {
+  const doc = document.documentElement
+  if (val)
+    doc.style.setProperty('--doc-height', '100vh')
+
+  else
+    doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
+})
 onMounted(() => {
   if (document)
     documentHeight()

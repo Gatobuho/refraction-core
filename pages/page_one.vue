@@ -11,6 +11,7 @@ const generalState = useGeneralStore()
 
 const { openModal } = (generalState)
 const { hasModal } = storeToRefs(generalState)
+useScriptTag('https://cdn.jsdelivr.net/npm/add-to-calendar-button@2')
 </script>
 
 <template>
@@ -136,9 +137,11 @@ const { hasModal } = storeToRefs(generalState)
         src="/images/Grupo02_c.png"
       />
     </aside>
-    <InviteEventCard class="z-10 relative mb-20" v-bind="PARTY" icon="" />
-    <InviteGoldenLines />
-    <InviteEventCard class="z-10 relative mb-20" v-bind="CIVIL" icon="" />
+    <InviteGoldenLines class="absolute inset-x-0" />
+    <div class="flex flex-col gap-y-8 lg:flex-row lg:gap-x-24 lg:gap-y-0 items-center justify-center lg:items-start">
+      <InviteEventCard class="z-10 relative mb-20" v-bind="PARTY" icon="" />
+      <InviteEventCard class="z-10 relative mb-20" v-bind="CIVIL" icon="" />
+    </div>
   </section>
   <!-- Fiesta -->
   <section class="bg-slate-800 px-6 flex flex-col justify-center text-center">
@@ -149,7 +152,7 @@ const { hasModal } = storeToRefs(generalState)
     <p class="mb-14">
       Hagamos juntos una fiesta épica. Aquí algunos detalles a tener en cuenta.
     </p>
-    <div class="relative flex flex-col gap-8">
+    <div class="relative flex flex-col gap-8 items-center lg:flex-row lg:justify-around">
       <NuxtPicture
         format="webp"
         loading="lazy"
@@ -183,8 +186,8 @@ const { hasModal } = storeToRefs(generalState)
     </div>
   </section>
   <!-- Regalos -->
-  <section class="relative">
-    <div class="absolute w-6/12 -right-10 top-50 opacity-50 -z-0">
+  <section class="relative overflow-hidden">
+    <div class="absolute w-6/12 -right-10 top-10 opacity-50 -z-1 lg:w-3/12 lg:right-0">
       <NuxtPicture
         format="webp"
         loading="lazy"
@@ -226,7 +229,7 @@ const { hasModal } = storeToRefs(generalState)
       <br>
 
       <button
-        class="rounded-xl bg-slate-100 text-slate-600 font-bold px-6 py-2 uppercase w-50 mx-auto"
+        class="btn rounded-xl bg-slate-100 text-slate-600 font-bold px-6 py-2 uppercase w-50 mx-auto"
         @click="openModal('regalos')"
       >
         Ver más
@@ -268,7 +271,7 @@ const { hasModal } = storeToRefs(generalState)
     </div>
   </section>
   <Teleport to="body">
-    <InviteModal v-show="hasModal" />
+    <InviteModal v-if="hasModal" />
   </Teleport>
   <!-- Footer -->
   <section class="flex flex-col px-6 gap-y-5 items-center">
@@ -277,58 +280,23 @@ const { hasModal } = storeToRefs(generalState)
       <span class="text-slate-500">&</span>
       <span>Fran</span>
     </h4>
-    <button @click="openModal('ceremonia')">
-      Confirmar asistencia a ceremonia
-    </button>
-    <button @click="openModal('fiesta')">
-      Confirmar asistencia a fiesta
-    </button>
-    <button @click="openModal('music')">
-      Sugerir canción
-    </button>
-    <ul>
-      <li>
-        <div
-          id="addeventatc3"
-          title=""
-          class="addeventatc"
-          aria-haspopup="true"
-          aria-expanded="false"
-          tabindex="0"
-          translate="no"
-          data-loaded="true"
-          style="visibility: visible"
-        >
-          <span class="nameBtn atc_node notranslate">Agendar Fiesta</span>
-
-          <span class="start atc_node notranslate">2023-02-21 22:13:52</span>
-          <span class="end atc_node notranslate">2023-02-21 22:13:52</span>
-          <span class="timezone atc_node notranslate">America/Argentina/Buenos_Aires</span>
-          <span class="title atc_node notranslate">Boda de Fede y Lore (Fiesta)</span>
-        </div>
-      </li>
-
-      <li>
-        <div
-          id="addeventatc4"
-          title=""
-          class="addeventatc"
-          aria-haspopup="true"
-          aria-expanded="false"
-          tabindex="0"
-          translate="no"
-          data-loaded="true"
-          style="visibility: visible"
-        >
-          <span class="nameBtn atc_node notranslate">Agendar Ceremonia</span>
-
-          <span class="start atc_node notranslate">2023-02-21 22:13:52</span>
-          <span class="end atc_node notranslate">2023-02-21 22:13:52</span>
-          <span class="timezone atc_node notranslate">America/Argentina/Buenos_Aires</span>
-          <span class="title atc_node notranslate">Boda de Fede y Lore (Ceremonia)</span>
-        </div>
-      </li>
-    </ul>
+    <div class="flex flex-col gap-y-6 lg:flex-row lg:gap-y-0 lg:gap-x-6">
+      <button @click="openModal('ceremonia')">
+        Confirmar asistencia a ceremonia
+      </button>
+      <button @click="openModal('fiesta')">
+        Confirmar asistencia a fiesta
+      </button>
+      <button @click="openModal('music')">
+        Sugerir canción
+      </button>
+      <button @click="openModal('fiesta')">
+        Agendar fiesta
+      </button>
+      <button @click="openModal('music')">
+        Agendar ceremonia
+      </button>
+    </div>
   </section>
 </template>
 
@@ -350,6 +318,16 @@ section {
 .date-decorator {
     @apply w-full h-px bg-slate-100;
 }
+
+.btn {
+        @apply inline-block rounded-xl px-4 py-2 mt-4 transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1 hover:scale-110;
+        &.main {
+           @apply text-slate-100 bg-slate-500 border border-transparent hover:bg-slate-700 hover:border-slate-200;
+        }
+        &:not(.main) {
+            @apply border border-slate-500 text-slate-500 hover:bg-slate-500 hover:text-slate-100;
+        }
+    }
 
 @keyframes drop-fade {
     from {

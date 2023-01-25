@@ -11,10 +11,12 @@ export const ConfirmationStatus = {
 type ConfirmationStatusType = typeof ConfirmationStatus[keyof typeof ConfirmationStatus]
 
 interface EventData {
+  event: string
   place: string
   name: string
   startDateTime: string
   endDateTime: string
+  maps: string
 }
 
 export type { Family, WorkingFamily, Guest, WorkingGuest, User, Role, ConfirmationStatusType, EventData }

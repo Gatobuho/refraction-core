@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import { storeToRefs } from 'pinia'
 import { useGeneralStore } from '@/composables/general'
 
 const generalState = useGeneralStore()
@@ -26,6 +25,7 @@ const { closeModal } = (generalState)
       <button class="modal__btn" @click="closeModal">
         Contratar
       </button>
+      <InviteCalendarModal />
       <NuxtPicture
         format="webp"
         loading="lazy"

@@ -5,14 +5,14 @@ import { useGeneralStore } from '@/composables/general'
 const generalState = useGeneralStore()
 
 const { hasModal } = storeToRefs(generalState)
-useHead({
+/* useHead({
   title: 'Vitesse Nuxt 3',
   link: [
     {
       rel: 'icon', type: 'image/png', href: '/nuxt.png',
     },
   ],
-})
+}) */
 
 const documentHeight = () => {
   // https://nirazanbasnet.medium.com/dont-use-100vh-for-mobile-responsive-43a709c7e9e6
@@ -20,12 +20,17 @@ const documentHeight = () => {
   doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
 }
 watch(hasModal, (val) => {
-  const doc = document.documentElement
-  if (val)
-    doc.style.setProperty('--doc-height', '100vh')
-
-  else
-    doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
+  const bodyEl = document.body
+  if (val) {
+    bodyEl.style.top = `-${window.scrollY}px`
+    bodyEl.style.position = 'fixed'
+  }
+  else {
+    const scrollY = document.body.style.top
+    bodyEl.style.position = ''
+    bodyEl.style.top = ''
+    window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  }
 })
 onMounted(() => {
   if (document)
@@ -51,6 +56,7 @@ html, body , #__nuxt{
   padding: 0;
   height: 100vh; /* fallback for Js load */
   height: var(--doc-height);
+  width: 100%;
 }
 
 html.dark {

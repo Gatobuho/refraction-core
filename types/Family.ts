@@ -9,9 +9,13 @@ export interface Family extends WorkingFamily {
 }
 
 export interface WorkingFamily {
-  name: string
-  songTitle: string
   comments: string
+  createdAt?: string
   group: string
   guests?: Guest[] | WorkingGuest[]
+  id?: number
+  name: string
+  songTitle: string
+  updatedAt?: string
+  uuid?: string
 }

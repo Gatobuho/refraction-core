@@ -8,7 +8,7 @@ const { hasModal } = storeToRefs(generalState)
 </script>
 
 <template>
-  <div class="h-full" :class="{ 'w-full overflow-hidden': hasModal }">
+  <div class="h-full">
     <slot />
     <Footer />
   </div>

@@ -7,10 +7,24 @@ interface Props {
   endDateTime: string
   icon: string
   maps: string
+  modal: string
 }
 const props = defineProps<Props>()
+const generalState = useGeneralStore()
 
-const when = useDateFormat(new Date(props.startDateTime), 'D, MMMM, HH', { locales: 'es-AR' })
+const { openModal } = (generalState)
+const when = computed(() => {
+  const intl = new Intl.DateTimeFormat('es', {
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  })
+  const date = intl.format(new Date(props.startDateTime)).replaceAll(',', '').split(' ')
+  const returnDate = `${date[0]} ${date[1]} ${date[2]} a las ${date[3]}`
+
+  return returnDate
+})
 </script>
 
 <template>
@@ -40,23 +54,23 @@ const when = useDateFormat(new Date(props.startDateTime), 'D, MMMM, HH', { local
     <div class="info-box">
       <h6>Día</h6>
       <p>{{ when }}</p>
-      <button class="btn main">
-        <span class="">Agendar</span>
+      <button class="btn main" @click="openModal(modal)">
+        Confirmar asistencia
       </button>
     </div>
 
     <div class="info-box">
       <h6>Lugar</h6>
       <p>{{ name }}</p>
-      <button class="btn" href="https://fixdate.io/ar/modelo-invitacion/arte-y-flor#">
-        Confirmar asistencia
+      <button class="btn" @click="openModal(`agendar_${modal}`)">
+        <span class="">Agendar</span>
       </button>
     </div>
 
     <div class="info-box">
       <h6>Dirección</h6>
       <p>{{ place }}</p>
-      <button class="btn" href="https://fixdate.io/ar/modelo-invitacion/arte-y-flor#">
+      <button class="btn" :href="maps">
         ¿Cómo llegar?
       </button>
     </div>
@@ -74,7 +88,6 @@ const when = useDateFormat(new Date(props.startDateTime), 'D, MMMM, HH', { local
         @apply text-2xl text-slate-300 font-bold;
     }
     & .btn {
-        @apply inline-block rounded-xl px-4 py-2 mt-4 transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1 hover:scale-110;
         &.main {
            @apply text-slate-100 bg-slate-500 border border-transparent hover:bg-slate-700 hover:border-slate-200;
         }

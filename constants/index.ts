@@ -7,6 +7,7 @@ export const PARTY: EventData = {
   startDateTime: '2023-03-24T16:00:00',
   endDateTime: '2023-03-25T01:00:00',
   maps: 'https://goo.gl/maps/z4yMM464VmvGzH5v7',
+  modal: 'fiesta',
 }
 export const CIVIL: EventData = {
   event: 'Ceremonia',
@@ -15,5 +16,6 @@ export const CIVIL: EventData = {
   startDateTime: '2023-03-21T12:30:00',
   endDateTime: '2023-03-21T01:00:00',
   maps: 'https://goo.gl/maps/bHFyh2YE8LUw2Wz67',
+  modal: 'ceremonia',
 }
 

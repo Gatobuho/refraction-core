@@ -30,9 +30,9 @@ A base schafolding for web projects based in [Vitesse-nuxt3](https://github.com/
 
 - 📒 [Planetscale DB](https://planetscale.com/)
 
+---
 
-
-```
+``` bash
 npx prisma init --datasource-provider mysql
 postgresql, mysql, sqlite, sqlserver, mongodb, cockroachdb
 

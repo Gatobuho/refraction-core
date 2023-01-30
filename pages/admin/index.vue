@@ -21,7 +21,7 @@ const filteredFamilies = ref(families.value)
 
 const filterFamilies = (flias: Family[]) => {
   const _families = JSON.parse(JSON.stringify(flias))
-  return _families.filter((family) => {
+  return _families.filter((family: Family) => {
     family.guests = family.guests?.filter((guest) => {
       if (confirmedFilter.value)
         return guest.confirmed === confirmedFilter.value

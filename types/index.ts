@@ -17,6 +17,7 @@ interface EventData {
   startDateTime: string
   endDateTime: string
   maps: string
+  modal: string
 }
 
 export type { Family, WorkingFamily, Guest, WorkingGuest, User, Role, ConfirmationStatusType, EventData }

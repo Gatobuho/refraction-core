@@ -9,16 +9,7 @@ https://login.yahoo.com/?.src=yc&.done=https%3A%2F%2Fcalendar.yahoo.com%2F%3Fv%3
 </script>
 
 <template>
-  <add-to-calendar-button
-    name="Title"
-    options="'Apple','Google'"
-    location="World Wide Web"
-    start-date="2023-01-28"
-    end-date="2023-01-28"
-    start-time="10:15"
-    end-time="23:30"
-    time-zone="America/Los_Angeles"
-  />
+  <div />
 </template>
 
 <style scoped lang='scss'>

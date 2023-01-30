@@ -1,9 +1,38 @@
 <script setup lang='ts'>
-import { useGeneralStore } from '@/composables/general'
+import { storeToRefs } from 'pinia'
+import { PossibleModals, useGeneralStore } from '@/composables/general'
+import { useFamilyStore } from '@/stores/family'
 
 const generalState = useGeneralStore()
+const familyState = useFamilyStore()
 
-const { closeModal } = (generalState)
+const { selectedFamily } = storeToRefs(familyState)
+
+const { currentModal } = storeToRefs(generalState)
+const { closeModal } = generalState
+
+const modalTitle = computed(() => {
+  switch (currentModal.value) {
+    case PossibleModals.CEREMONIA:
+      return 'Ceremonia'
+    case PossibleModals.FIESTA:
+      return 'Fiesta'
+    case PossibleModals.MUSIC:
+      return 'Música'
+    case PossibleModals.AGENDAR_CEREMONIA:
+      return 'Agendar Ceremonia'
+    case PossibleModals.AGENDAR_FIESTA:
+      return 'Agendar Fiesta'
+    case PossibleModals.DRESS_CODE:
+      return 'Dress Code'
+    case PossibleModals.DRIVE:
+      return 'Como llego?'
+    case PossibleModals.REGALOS:
+      return 'Regalos'
+    default:
+      return ''
+  }
+})
 </script>
 
 <template>
@@ -16,16 +45,30 @@ const { closeModal } = (generalState)
         class="modal-decoration top"
         :img-attrs="{ class: 'inline-block' }"
       />
+      <div class="i-ri-close-line text-slate-200 absolute top-3 right-6 w-8 h-8 cursor-pointer" @click="closeModal" />
       <h3 class="modal__title">
-        Plan 1
+        {{ modalTitle }}
       </h3>
       <p class="mb-4">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+        {{ currentModal }}
       </p>
-      <button class="modal__btn" @click="closeModal">
+      <p class="mb-4">
+        {{ selectedFamily }}
+      </p>
+
+      <InviteCeremonyModal v-if="currentModal === PossibleModals.CEREMONIA" />
+      <InvitePartyModal v-else-if="currentModal === PossibleModals.FIESTA" />
+      <InviteMusicModal v-else-if="currentModal === PossibleModals.MUSIC" />
+      <InvitePartyEventModal v-else-if="currentModal === PossibleModals.AGENDAR_FIESTA" />
+      <InviteCeremonyEventModal v-else-if="currentModal === PossibleModals.AGENDAR_CEREMONIA" />
+      <InviteDressCodeModal v-else-if="currentModal === PossibleModals.DRESS_CODE" />
+      <InviteDriveModal v-else-if="currentModal === PossibleModals.DRIVE" />
+      <InvitePresentModal v-else-if="currentModal === PossibleModals.REGALOS" />
+
+      <button class="modal__btn">
         Contratar
       </button>
-      <InviteCalendarModal />
+
       <NuxtPicture
         format="webp"
         loading="lazy"
@@ -45,6 +88,7 @@ const { closeModal } = (generalState)
   &__box {
     @apply max-w-md rounded p-5 pt-2 bg-slate-700 relative transform;
     animation: fade-in 0.6s ease-in-out;
+    will-change: opacity transform;
   }
   &-decoration {
     @apply absolute -z-1 w-full inset-x-0 transition;

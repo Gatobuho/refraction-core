@@ -45,15 +45,3 @@ defineProps({
     </div>
   </div>
 </template>
-
-<style scoped lang='scss'>
-.btn {
-        @apply inline-block rounded-xl px-4 py-2 mt-4 transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1 hover:scale-110;
-        &.main {
-           @apply text-slate-100 bg-slate-500 border border-transparent hover:bg-slate-700 hover:border-slate-200;
-        }
-        &:not(.main) {
-            @apply border border-slate-500 text-slate-500 hover:bg-slate-500 hover:text-slate-100;
-        }
-    }
-</style>

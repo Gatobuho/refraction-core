@@ -77,7 +77,7 @@ const { hasModal } = storeToRefs(generalState)
       </h2>
     </div>
     <InviteTopCurve
-      class="absolute -bottom-px w-full h-20"
+      class="absolute -bottom-px w-full -z-1"
       color-one="#475569"
       color-two="#334155"
       color-three="#1e293b"

@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { Family, WorkingFamily } from '@/types'
+import type { Family, Guest, WorkingFamily } from '@/types'
 
 export const useFamilyStore = defineStore('family', () => {
   const families = ref<Array<WorkingFamily | Family>>([])
@@ -26,6 +26,47 @@ export const useFamilyStore = defineStore('family', () => {
       console.error(err)
     }
   }
+  async function confirmFamily(confirmGuests: { guests: Guest[]; comment: string }) {
+    console.log('confirmFamily', confirmGuests)
+    if (!confirmGuests.guests.length) {
+      console.error('No guests to confirm')
+      return
+    }
+    if (!confirmGuests.comment) {
+      console.error('No comment to confirm')
+      return
+    }
+
+    // replace the guests in the selected family with the confirmed guests
+    selectedFamily.value!.guests = confirmGuests.guests
+    selectedFamily.value!.comments = confirmGuests.comment
+
+    try {
+      const confirmations = confirmGuests.guests.map((guest) => {
+        return {
+          id: guest?.id || -1,
+          confirmed: guest.confirmed,
+        }
+      }) || []
+      console.log('confirmations', confirmations)
+      const confirmation = $fetch('/api/guest/confirm', {
+        method: 'PUT',
+        body: JSON.stringify(confirmations),
+      })
+      const comment = $fetch('/api/family/update', {
+        method: 'PUT',
+        body: JSON.stringify({
+          id: selectedFamily.value?.id,
+          comments: confirmGuests.comment,
+        }),
+      })
+
+      return await Promise.all([confirmation, comment])
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }
 
   /* async function createFamily(family: WorkingFamily) {
     const res = await $fetch('/api/families', {
@@ -43,6 +84,7 @@ export const useFamilyStore = defineStore('family', () => {
     selectFamily,
     fetchFamilies,
     fetchFamilyByUUID,
+    confirmFamily,
   }
 })
 

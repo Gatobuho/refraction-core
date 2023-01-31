@@ -11,12 +11,14 @@ const { selectedFamily } = storeToRefs(familyState)
 const { currentModal } = storeToRefs(generalState)
 const { closeModal } = generalState
 
+const show = ref(false)
+
 const modalTitle = computed(() => {
   switch (currentModal.value) {
     case PossibleModals.CEREMONIA:
       return 'Ceremonia'
     case PossibleModals.FIESTA:
-      return 'Fiesta'
+      return 'Venis a la Fiesta?'
     case PossibleModals.MUSIC:
       return 'Música'
     case PossibleModals.AGENDAR_CEREMONIA:
@@ -49,25 +51,21 @@ const modalTitle = computed(() => {
       <h3 class="modal__title">
         {{ modalTitle }}
       </h3>
-      <p class="mb-4">
-        {{ currentModal }}
-      </p>
-      <p class="mb-4">
+      <button @click="show = true">
+        -
+      </button>
+      <p v-if="show" class="mb-4" @click="show = false">
         {{ selectedFamily }}
       </p>
 
       <InviteCeremonyModal v-if="currentModal === PossibleModals.CEREMONIA" />
-      <InvitePartyModal v-else-if="currentModal === PossibleModals.FIESTA" />
+      <InvitePartyModal v-else-if="currentModal === PossibleModals.FIESTA" :guests="selectedFamily?.guests" />
       <InviteMusicModal v-else-if="currentModal === PossibleModals.MUSIC" />
       <InvitePartyEventModal v-else-if="currentModal === PossibleModals.AGENDAR_FIESTA" />
       <InviteCeremonyEventModal v-else-if="currentModal === PossibleModals.AGENDAR_CEREMONIA" />
       <InviteDressCodeModal v-else-if="currentModal === PossibleModals.DRESS_CODE" />
       <InviteDriveModal v-else-if="currentModal === PossibleModals.DRIVE" />
       <InvitePresentModal v-else-if="currentModal === PossibleModals.REGALOS" />
-
-      <button class="modal__btn">
-        Contratar
-      </button>
 
       <NuxtPicture
         format="webp"
@@ -86,7 +84,7 @@ const modalTitle = computed(() => {
     @apply fixed inset-0 bg-slate-700/10 backdrop-blur-md z-30 flex justify-center items-center h-full;
   }
   &__box {
-    @apply max-w-md rounded p-5 pt-2 bg-slate-700 relative transform;
+    @apply max-w-md rounded p-5 bg-slate-700 relative transform;
     animation: fade-in 0.6s ease-in-out;
     will-change: opacity transform;
   }

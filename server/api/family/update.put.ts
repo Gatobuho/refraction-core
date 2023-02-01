@@ -4,9 +4,6 @@ export default eventHandler(async (event) => {
   const body = await readBody(event)
   const client = serverSupabaseClient(event)
 
-  console.log('/family/update.put', body)
-  return
-
   const { id, comments } = body as Partial<Family>
   if (!id || !comments) {
     throw createError({
@@ -15,7 +12,8 @@ export default eventHandler(async (event) => {
     })
   }
 
-  const { data, error } = await client.from('family').update({ comments }).eq('id', id).select()
+  // @ts-expect-error: Supabase doesn't know about the comments field
+  const { data, error } = await client.from('families').update({ comments }).eq('id', id).select()
 
   if (!data || error) {
     console.error(error)
@@ -26,7 +24,7 @@ export default eventHandler(async (event) => {
   }
 
   if (data[0])
-    return { family: data[0] as Guest }
+    return { family: data[0] as Family }
 
   throw createError({
     statusCode: 418,

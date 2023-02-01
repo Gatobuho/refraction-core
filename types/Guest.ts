@@ -8,5 +8,6 @@ export interface WorkingGuest {
   name: string
   isHead: number
   confirmed: number
+  ceremonyConfirm: number
   familyId?: number
 }

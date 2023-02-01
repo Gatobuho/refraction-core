@@ -234,7 +234,7 @@ const { hasModal } = storeToRefs(generalState)
       <br>
 
       <button
-        class="btn rounded-xl bg-slate-100 text-slate-600 font-bold px-6 py-2 uppercase w-50 mx-auto"
+        class="btn main rounded-xl bg-slate-100 text-slate-600 font-bold px-6 py-2 uppercase w-50 mx-auto"
         @click="openModal('regalos')"
       >
         Ver más
@@ -286,19 +286,19 @@ const { hasModal } = storeToRefs(generalState)
       <span>Fran</span>
     </h4>
     <div class="flex flex-col gap-y-6 lg:flex-row lg:gap-y-0 lg:gap-x-6">
-      <button @click="openModal('ceremonia')">
+      <button class="hover:(text-amber-500 underline)" @click="openModal('ceremonia')">
         Confirmar asistencia a ceremonia
       </button>
-      <button @click="openModal('fiesta')">
+      <button class="hover:(text-amber-500 underline)" @click="openModal('fiesta')">
         Confirmar asistencia a fiesta
       </button>
-      <button @click="openModal('music')">
+      <button class="hover:(text-amber-500 underline)" @click="openModal('music')">
         Sugerir canción
       </button>
-      <button @click="openModal('agendar_fiesta')">
+      <button class="hover:(text-amber-500 underline)" @click="openModal('agendar_fiesta')">
         Agendar fiesta
       </button>
-      <button @click="openModal('agendar_ceremonia')">
+      <button class="hover:(text-amber-500 underline)" @click="openModal('agendar_ceremonia')">
         Agendar ceremonia
       </button>
     </div>
@@ -323,15 +323,6 @@ section {
 .date-decorator {
     @apply w-full h-px bg-slate-100;
 }
-
-.btn {
-        &.main {
-           @apply text-slate-100 bg-slate-500 border border-transparent hover:bg-slate-700 hover:border-slate-200;
-        }
-        &:not(.main) {
-            @apply border border-slate-500 text-slate-500 hover:bg-slate-500 hover:text-slate-100;
-        }
-    }
 
 @keyframes drop-fade {
     from {

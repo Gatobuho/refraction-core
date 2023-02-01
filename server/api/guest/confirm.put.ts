@@ -4,32 +4,40 @@ export default eventHandler(async (event) => {
   const body = await readBody(event)
   const client = serverSupabaseClient(event)
 
-  console.log('/guest/confirm.put', body)
-  return
-
-  const { id, confirmed } = body as Partial<Guest>
-  if (!id || !confirmed) {
+  if (body.length <= 0) {
     throw createError({
       statusCode: 400,
       statusMessage: 'Bad request',
     })
   }
 
-  const { data, error } = await client.from('guests').update({ confirmed }).eq('id', id).select()
+  const confs = []
 
-  if (!data || error) {
-    console.error(error)
+  for (let i = 0; i < body.length; i++) {
+    const { id, confirmed } = body[i] as Partial<Guest>
+    // @ts-expect-error: Supabase doesn't know about the confirmed field
+    const confirmation = client.from('guests').update({ confirmed }).eq('id', id).select()
+    confs.push(confirmation)
+  }
+
+  const responses = await Promise.all(confs)
+
+  if (responses.length <= 0 || responses.some((res: any) => res.error) || responses.some((res: any) => !res.data)) {
+    responses.forEach((res: any) => console.error(res.error))
     throw createError({
       statusCode: 404,
-      statusMessage: 'Guest had an error',
+      statusMessage: 'Guests had an error',
     })
   }
 
-  if (data[0])
-    return { family: data[0] as Guest }
+  const responseData = responses.map((res: any) => {
+    return res.data[0]
+  })
+  if (responseData.length)
+    return { guests: responseData as Guest[] }
 
   throw createError({
     statusCode: 418,
-    statusMessage: 'Your guest is a teapot',
+    statusMessage: 'Your guests is a teapot',
   })
 })

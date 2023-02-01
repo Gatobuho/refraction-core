@@ -27,17 +27,14 @@ export const useFamilyStore = defineStore('family', () => {
     }
   }
   async function confirmFamily(confirmGuests: { guests: Guest[]; comment: string }) {
-    console.log('confirmFamily', confirmGuests)
-    if (!confirmGuests.guests.length) {
-      console.error('No guests to confirm')
-      return
-    }
-    if (!confirmGuests.comment) {
-      console.error('No comment to confirm')
-      return
-    }
+    if (!confirmGuests.guests.length)
+      return console.error('No guests to confirm')
 
-    // replace the guests in the selected family with the confirmed guests
+    if (!confirmGuests.comment)
+      return console.error('No comment to confirm')
+
+    console.table(confirmGuests)
+
     selectedFamily.value!.guests = confirmGuests.guests
     selectedFamily.value!.comments = confirmGuests.comment
 
@@ -48,7 +45,7 @@ export const useFamilyStore = defineStore('family', () => {
           confirmed: guest.confirmed,
         }
       }) || []
-      console.log('confirmations', confirmations)
+
       const confirmation = $fetch('/api/guest/confirm', {
         method: 'PUT',
         body: JSON.stringify(confirmations),
@@ -61,7 +58,12 @@ export const useFamilyStore = defineStore('family', () => {
         }),
       })
 
-      return await Promise.all([confirmation, comment])
+      const [conf, comm] = await Promise.all([confirmation, comment])
+
+      selectedFamily.value!.guests = conf.guests
+      selectedFamily.value = { ...selectedFamily.value!, ...comm.family }
+
+      return selectedFamily.value
     }
     catch (err) {
       console.error(err)

@@ -38,8 +38,8 @@ const modalTitle = computed(() => {
 </script>
 
 <template>
-  <aside class="modal__backdrop">
-    <article class="modal__box">
+  <aside class="modal__backdrop cursor-pointer" @click.self="closeModal()">
+    <article class="modal__box cursor-auto">
       <NuxtPicture
         format="webp"
         loading="lazy"
@@ -81,10 +81,10 @@ const modalTitle = computed(() => {
 <style scoped lang='scss'>
 .modal {
   &__backdrop {
-    @apply fixed inset-0 bg-slate-700/10 backdrop-blur-md z-30 flex justify-center items-center h-full;
+    @apply fixed inset-0 bg-gray-700/50 backdrop-blur-md z-30 flex justify-center items-center h-full;
   }
   &__box {
-    @apply max-w-md rounded p-5 bg-slate-700 relative transform;
+    @apply max-w-md w-full rounded p-5 bg-slate-700 relative transform;
     animation: fade-in 0.6s ease-in-out;
     will-change: opacity transform;
   }

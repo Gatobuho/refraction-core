@@ -87,13 +87,5 @@ const when = computed(() => {
     & h6 {
         @apply text-2xl text-slate-300 font-bold;
     }
-    & .btn {
-        &.main {
-           @apply text-slate-100 bg-slate-500 border border-transparent hover:bg-slate-700 hover:border-slate-200;
-        }
-        &:not(.main) {
-            @apply border border-slate-500 text-slate-500 hover:bg-slate-500 hover:text-slate-100;
-        }
-    }
 }
 </style>

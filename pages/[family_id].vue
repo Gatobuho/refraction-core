@@ -191,8 +191,8 @@ const { hasModal } = storeToRefs(generalState)
     </div>
   </section>
   <!-- Regalos -->
-  <section class="relative overflow-hidden bg-gradient from-slate-800 to-slate-600">
-    <div class="absolute w-6/12 -right-10 top-10 opacity-50 -z-1 lg:w-3/12 lg:right-0">
+  <section class="relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-700">
+    <div class="absolute w-6/12 -right-10 top-10 opacity-50 z-1 lg:w-3/12 lg:right-0">
       <NuxtPicture
         format="webp"
         loading="lazy"
@@ -216,7 +216,7 @@ const { hasModal } = storeToRefs(generalState)
       />
     </div>
 
-    <div class="flex flex-col text-center gap-y-10 max-w-sm mx-auto px-10">
+    <div class="flex flex-col text-center gap-y-10 max-w-sm mx-auto px-10 relative z-10">
       <h2 class="text-3xl">
         Regalos
       </h2>
@@ -241,8 +241,9 @@ const { hasModal } = storeToRefs(generalState)
       </button>
     </div>
   </section>
+  <!-- <section class="bg-gradient-to-b from-slate-800 via-slate-800 to-slate-600" /> -->
   <!-- Instagram -->
-  <section class="relative h-8/12">
+  <section class="relative bg-gradient-to-b from-slate-700 to-slate-600">
     <NuxtPicture
       format="webp"
       class="absolute inset-0 -z-1"

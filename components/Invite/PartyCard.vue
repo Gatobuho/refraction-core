@@ -39,7 +39,7 @@ defineProps({
 
       <p v-html="text" />
 
-      <button class="btn rounded-xl bg-slate-100 text-slate-600 font-bold px-6 py-2 uppercase">
+      <button class="btn main rounded-xl bg-slate-100 text-slate-600 font-bold px-6 py-2 uppercase">
         {{ btnText }}
       </button>
     </div>

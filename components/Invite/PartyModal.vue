@@ -1,11 +1,16 @@
 <script setup lang='ts'>
 import { storeToRefs } from 'pinia'
-import type { ConfirmationStatusType, Guest } from '@/types'
+import type { Guest } from '@/types'
 import { useFamilyStore } from '@/stores/family'
+import { useGeneralStore } from '@/composables/general'
 
+const generalState = useGeneralStore()
 const { confirmFamily } = useFamilyStore()
 const familyState = useFamilyStore()
+
 const { selectedFamily } = storeToRefs(familyState)
+const { closeModal } = generalState
+
 const guests = ref([] as Guest[])
 const comment = ref('')
 
@@ -16,13 +21,12 @@ function handleConfirmChange(guest: Guest) {
 
   else
     guests.value.push(guest)
-
-  console.log('guests', guests.value)
 }
 
-function handleConfirm() {
-  console.log('cosas', { guests: guests.value, comment: comment.value })
-  confirmFamily({ guests: guests.value, comment: comment.value })
+async function handleConfirm() {
+  const confirmRes = await confirmFamily({ guests: guests.value, comment: comment.value })
+  if (confirmRes)
+    closeModal()
 }
 
 onBeforeMount(() => {
@@ -33,6 +37,7 @@ onBeforeMount(() => {
 
 <template>
   <section class="space-y-4 flex flex-col items-end">
+    <p>Fiesta</p>
     <template v-for="g in guests" :key="g.id">
       <InviteGuestSelection :guest="g" class="w-full" @change="handleConfirmChange" />
     </template>

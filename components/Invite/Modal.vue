@@ -21,10 +21,6 @@ const modalTitle = computed(() => {
       return 'Venis a la Fiesta?'
     case PossibleModals.MUSIC:
       return 'Música'
-    case PossibleModals.AGENDAR_CEREMONIA:
-      return 'Agendar Ceremonia'
-    case PossibleModals.AGENDAR_FIESTA:
-      return 'Agendar Fiesta'
     case PossibleModals.DRESS_CODE:
       return 'Dress Code'
     case PossibleModals.DRIVE:
@@ -61,8 +57,6 @@ const modalTitle = computed(() => {
       <InviteCeremonyModal v-if="currentModal === PossibleModals.CEREMONIA" />
       <InvitePartyModal v-else-if="currentModal === PossibleModals.FIESTA" :guests="selectedFamily?.guests" />
       <InviteMusicModal v-else-if="currentModal === PossibleModals.MUSIC" />
-      <InvitePartyEventModal v-else-if="currentModal === PossibleModals.AGENDAR_FIESTA" />
-      <InviteCeremonyEventModal v-else-if="currentModal === PossibleModals.AGENDAR_CEREMONIA" />
       <InviteDressCodeModal v-else-if="currentModal === PossibleModals.DRESS_CODE" />
       <InviteDriveModal v-else-if="currentModal === PossibleModals.DRIVE" />
       <InvitePresentModal v-else-if="currentModal === PossibleModals.REGALOS" />

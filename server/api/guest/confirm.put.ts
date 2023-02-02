@@ -14,9 +14,9 @@ export default eventHandler(async (event) => {
   const confs = []
 
   for (let i = 0; i < body.length; i++) {
-    const { id, confirmed } = body[i] as Partial<Guest>
+    const { id, confirmed, ceremonyConfirm } = body[i] as Partial<Guest>
     // @ts-expect-error: Supabase doesn't know about the confirmed field
-    const confirmation = client.from('guests').update({ confirmed }).eq('id', id).select()
+    const confirmation = client.from('guests').update({ confirmed, ceremonyConfirm }).eq('id', id).select()
     confs.push(confirmation)
   }
 

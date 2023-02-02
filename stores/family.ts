@@ -33,8 +33,6 @@ export const useFamilyStore = defineStore('family', () => {
     if (!confirmGuests.comment)
       return console.error('No comment to confirm')
 
-    console.table(confirmGuests)
-
     selectedFamily.value!.guests = confirmGuests.guests
     selectedFamily.value!.comments = confirmGuests.comment
 
@@ -43,6 +41,7 @@ export const useFamilyStore = defineStore('family', () => {
         return {
           id: guest?.id || -1,
           confirmed: guest.confirmed,
+          ceremonyConfirm: guest.ceremonyConfirm,
         }
       }) || []
 

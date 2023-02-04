@@ -26,3 +26,4 @@ html.dark {
       @apply border border-slate-300 text-slate-200 hover:(bg-slate-500 text-slate-100);
   }
 }
+// need grid superset

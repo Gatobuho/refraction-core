@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   ],
   css: [
     'anu-vue/dist/style.css',
-    '@/assets/main.scss',
+    '@/assets/main.css',
   ],
   experimental: {
     viteNode: false,

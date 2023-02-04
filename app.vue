@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const doc_hight = ref('100vh')
 const documentHeight = () => {
   // https://nirazanbasnet.medium.com/dont-use-100vh-for-mobile-responsive-43a709c7e9e6
-  const doc = document.documentElement
-  doc_hight.value = `${window.innerHeight}px`
+  document.documentElement.style.setProperty('--doc-height', `${window.innerHeight}px`)
 }
 onMounted(() => {
   if (document)
@@ -21,13 +19,11 @@ onMounted(() => {
 </template>
 
 <style>
-html, body , #__nuxt{
-  @apply m-0 p-0 w-full;
-  height: v-bind('doc_hight');
+:root {
+ --doc-height: 100vh;
 }
-
-html.dark {
-  background: #222;
-  color: white;
+html, body , #__nuxt{
+  @apply m-0 p-0 w-full bg-base color-base;
+  height: var(--doc-height);
 }
 </style>

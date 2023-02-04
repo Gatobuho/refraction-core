@@ -15,9 +15,9 @@ export default defineConfig({
     ['btn', 'inline-block rounded-xl px-4 py-2 mt-4 transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1 hover:scale-110'],
     ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
     ['border-base', 'border-gray-200 dark:border-dark-200'],
-    ['bg-base', 'bg-white dark:bg-dark-100'],
-    ['color-base', 'text-gray-900 dark:text-dark-300'],
-    ['color-fade', 'text-gray-900:50 dark:text-dark-300:50'],
+    ['bg-base', 'bg-slate-100 dark:bg-slate-900'],
+    ['color-base', 'text-slate-900 dark:text-slate-100'],
+    ['color-fade', 'text-slate-900:50 dark:text-slate-100:50'],
   ],
   presets: [
     presetUno(),

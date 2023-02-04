@@ -1,11 +1,14 @@
-// import { HstNuxt } from '@histoire/plugin-nuxt'
-
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Alda & Fran se Casan!',
+      title: 'Refraction',
       meta: [
-        { name: 'description', content: 'Nos casamos el 24 de marzo a las 16:00 en Estacion Fatima' },
+        { name: 'description', content: 'A Nuxt 3 based starter project, to make your dev-life easier' },
+      ],
+      link: [
+        {
+          rel: 'icon', type: 'image/png', href: '/nuxt.png',
+        },
       ],
     },
   },

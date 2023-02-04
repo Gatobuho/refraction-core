@@ -6,7 +6,8 @@
     "dev": "nuxi dev",
     "start": "node .output/server/index.mjs",
     "lint": "eslint .",
-    "postinstall": "nuxi prepare"
+    "postinstall": "nuxi prepare",
+    "test": "playwright test"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",

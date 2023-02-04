@@ -1,29 +1,10 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useGeneralStore } from '@/composables/general'
-
-const generalState = useGeneralStore()
-
-const { hasModal } = storeToRefs(generalState)
-
+const doc_hight = ref('100vh')
 const documentHeight = () => {
   // https://nirazanbasnet.medium.com/dont-use-100vh-for-mobile-responsive-43a709c7e9e6
   const doc = document.documentElement
-  doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
+  doc_hight.value = `${window.innerHeight}px`
 }
-watch(hasModal, (val) => {
-  const bodyEl = document.body
-  if (val) {
-    bodyEl.style.top = `-${window.scrollY}px`
-    bodyEl.style.position = 'fixed'
-  }
-  else {
-    const scrollY = document.body.style.top
-    bodyEl.style.position = ''
-    bodyEl.style.top = ''
-    window.scrollTo(0, parseInt(scrollY || '0') * -1)
-  }
-})
 onMounted(() => {
   if (document)
     documentHeight()
@@ -40,15 +21,9 @@ onMounted(() => {
 </template>
 
 <style>
-:root {
- --doc-height: 100%;
-}
 html, body , #__nuxt{
-  margin: 0;
-  padding: 0;
-  height: 100vh; /* fallback for Js load */
-  height: var(--doc-height);
-  width: 100%;
+  @apply m-0 p-0 w-full;
+  height: v-bind('doc_hight');
 }
 
 html.dark {

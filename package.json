@@ -12,7 +12,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
     "@headlessui/vue": "^1.7.9",
-    "@histoire/plugin-nuxt": "^0.10.7",
     "@iconify-json/bx": "^1.1.5",
     "@iconify-json/carbon": "^1.1.14",
     "@iconify-json/ri": "^1.1.4",
@@ -24,6 +23,7 @@
     "@pinia/nuxt": "^0.3.1",
     "@playwright/test": "^1.30.0",
     "@unocss/nuxt": "^0.45.30",
+    "@vueuse/core": "^9.12.0",
     "@vueuse/motion": "2.0.0-beta.12",
     "@vueuse/nuxt": "^9.12.0",
     "anu-vue": "^0.10.0",
@@ -32,8 +32,11 @@
     "nuxt": "^3.1.2",
     "pinia": "^2.0.30",
     "playwright": "^1.30.0",
-    "sass": "^1.58.0",
     "typescript": "^4.9.5",
     "vitest": "^0.28.4"
+  },
+  "dependencies": {
+    "@anu-vue/nuxt": "^0.12.0",
+    "@anu-vue/preset-theme-default": "^0.12.0"
   }
 }

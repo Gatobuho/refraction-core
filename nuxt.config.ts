@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    '@anu-vue/nuxt',
     '@nuxt/image-edge',
     '@nuxtjs/color-mode',
     '@nuxtjs/supabase',

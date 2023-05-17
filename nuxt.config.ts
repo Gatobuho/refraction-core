@@ -1,14 +1,20 @@
+import { pwa } from './config/pwa'
+import { appDescription } from './constants/index'
+
 export default defineNuxtConfig({
   app: {
     head: {
       title: 'Refraction',
-      meta: [
-        { name: 'description', content: 'A Nuxt 3 based starter project, to make your dev-life easier' },
-      ],
+      viewport: 'width=device-width,initial-scale=1',
       link: [
-        {
-          rel: 'icon', type: 'image/png', href: '/nuxt.png',
-        },
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: appDescription },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
     },
   },
@@ -22,11 +28,14 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   css: [
+    '@unocss/reset/tailwind.css',
     'anu-vue/dist/style.css',
     '@/assets/main.css',
   ],
   experimental: {
-    viteNode: false,
+    payloadExtraction: false,
+    inlineSSRStyles: false,
+    renderJsonPayloads: true,
   },
   unocss: {
     preflight: true,
@@ -34,15 +43,21 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-  // https://github.com/nuxt/framework/issues/6204#issuecomment-1201398080
-  hooks: {
-    'vite:extendConfig': function (config: any, { isServer }: any) {
-      if (isServer) {
-        // Workaround for netlify issue
-        // https://github.com/nuxt/framework/issues/6204
-        config.build.rollupOptions.output.inlineDynamicImports = true
-      }
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
+    prerender: {
+      crawlLinks: false,
+      routes: ['/'],
+      ignore: ['/hi'],
     },
   },
-  plugins: [],
+  pwa,
+
+  devtools: {
+    enabled: true,
+  },
 })

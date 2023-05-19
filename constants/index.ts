@@ -1,2 +1,2 @@
 export const appName = 'Refraction Core'
-export const appDescription = 'Vitesse for Nuxt 3'
+export const appDescription = 'a Nuxt 3 scaffolding based on Vitesse from Anthony Fu'

@@ -1,5 +1,12 @@
+import { z } from 'zod'
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
+
+// https://twitter.com/iamandrewluca/status/1646464434963881985
+z.object({
+  SUPABASE_URL: z.string().url(),
+  SUPABASE_KEY: z.string(),
+}).parse(process.env)
 
 export default defineNuxtConfig({
   app: {
@@ -59,5 +66,12 @@ export default defineNuxtConfig({
 
   devtools: {
     enabled: true,
+  },
+  vite: {
+    vue: {
+      script: {
+        propsDestructure: true,
+      },
+    },
   },
 })

@@ -1,16 +1,10 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
   <div class="layout">
-    <header class="p-6 flex justify-between">
-      <div>Refraction</div>
-      <nav>
-        <NuxtLink />
-      </nav>
-      <div>
-        <ABtn variant="text">
-          Login
-        </ABtn>
-      </div>
-    </header>
+    <RHeader />
     <main class="content">
       <slot />
     </main>

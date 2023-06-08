@@ -15,7 +15,7 @@ const validNav = computed(() => {
     <NuxtLink to="/">
       Refraction
     </NuxtLink>
-    <nav>
+    <nav class="space-x-4">
       <NuxtLink v-for="validLink in validNav" :key="validLink.name" :to="validLink.path">
         {{ validLink.name }}
       </NuxtLink>

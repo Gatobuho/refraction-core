@@ -14,6 +14,6 @@
 
 <style scoped lang="postcss">
 .layout {
-  @apply grid grid-rows-[auto_1fr_auto] h-full;
+  @apply grid grid-rows-[auto_1fr_auto] min-h-screen;
 }
 </style>

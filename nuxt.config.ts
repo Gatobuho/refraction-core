@@ -28,7 +28,6 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@anu-vue/nuxt',
     '@nuxt/image-edge',
     '@nuxtjs/color-mode',
     // '@nuxtjs/supabase', // Commented when not using Supabase
@@ -38,13 +37,13 @@ export default defineNuxtConfig({
   ],
   css: [
     '@unocss/reset/tailwind.css',
-    'anu-vue/dist/style.css',
     '@/assets/main.css',
   ],
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
     renderJsonPayloads: true,
+    viewTransition: true,
   },
   unocss: {
     preflight: true,

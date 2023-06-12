@@ -22,3 +22,9 @@ const validNav = computed(() => {
     </nav>
   </header>
 </template>
+
+<style lang="postcss" scoped>
+  header {
+    view-transition-name: navbar;
+  }
+</style>

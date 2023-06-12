@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* const documentHeight = () => {
+const documentHeight = () => {
   // https://nirazanbasnet.medium.com/dont-use-100vh-for-mobile-responsive-43a709c7e9e6
   document.documentElement.style.setProperty('--doc-height', `${window.innerHeight}px`)
 }
@@ -9,7 +9,7 @@ onMounted(() => {
 
   if (window)
     window.addEventListener('resize', documentHeight)
-}) */
+})
 </script>
 
 <template>
@@ -24,7 +24,7 @@ onMounted(() => {
 }
 html, body , #__nuxt{
   @apply m-0 p-0 w-full bg-base color-base;
-  height: var(--doc-height);
+  min-height: var(--doc-height);
 }
 ::view-transition-old(root) {
   animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;

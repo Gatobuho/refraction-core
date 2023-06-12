@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import type { User } from '@/types'
 
 export const useUserStore = defineStore('user', () => {
   /**
@@ -23,10 +24,24 @@ export const useUserStore = defineStore('user', () => {
     savedName.value = name
   }
 
+  /**
+   * Creates a new user from the given data.
+   * https://twitter.com/srsholmes/status/1657087920522641408
+   * if the created_at property is not set, it will be set to the current date.
+   *
+  */
+  const createNewUser = (userData: User) => {
+    const newUser = { ...userData }
+    newUser.created_at ??= new Date().toISOString()
+
+    return newUser
+  }
+
   return {
     setNewName,
     otherNames,
     savedName,
+    createNewUser,
   }
 })
 

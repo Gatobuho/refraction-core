@@ -26,16 +26,16 @@ A base schafolding for web projects based in [Vitesse-nuxt3](https://github.com/
 
 - 🦾 [TypeScript](https://www.typescriptlang.org), of course
 
-- 📚: ORM via [Prisma.io](https://www.prisma.io)
+<!-- - 📚: ORM via [Prisma.io](https://www.prisma.io) -->
 
-- 📒 [Planetscale DB](https://planetscale.com/)
+<!-- - 📒 [Planetscale DB](https://planetscale.com/) -->
 
 ---
 
-``` bash
+<!-- ``` bash
 npx prisma init --datasource-provider mysql
 postgresql, mysql, sqlite, sqlserver, mongodb, cockroachdb
 
 npx prisma migrate dev --name init
 npx prisma studio
-```
+``` -->

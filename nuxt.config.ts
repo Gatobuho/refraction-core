@@ -1,5 +1,14 @@
+/* import { z } from 'zod' */
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
+
+// https://twitter.com/iamandrewluca/status/1646464434963881985
+/* Commented when not using Supabase
+z.object({
+  SUPABASE_URL: z.string().url(),
+  SUPABASE_KEY: z.string(),
+}).parse(process.env)
+*/
 
 export default defineNuxtConfig({
   app: {
@@ -19,23 +28,22 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@anu-vue/nuxt',
     '@nuxt/image-edge',
     '@nuxtjs/color-mode',
-    '@nuxtjs/supabase',
+    // '@nuxtjs/supabase', // Commented when not using Supabase
     '@pinia/nuxt',
     '@unocss/nuxt',
     '@vueuse/nuxt',
   ],
   css: [
     '@unocss/reset/tailwind.css',
-    'anu-vue/dist/style.css',
     '@/assets/main.css',
   ],
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
     renderJsonPayloads: true,
+    viewTransition: true,
   },
   unocss: {
     preflight: true,
@@ -59,5 +67,12 @@ export default defineNuxtConfig({
 
   devtools: {
     enabled: true,
+  },
+  vite: {
+    vue: {
+      script: {
+        propsDestructure: true,
+      },
+    },
   },
 })

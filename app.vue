@@ -24,6 +24,13 @@ onMounted(() => {
 }
 html, body , #__nuxt{
   @apply m-0 p-0 w-full bg-base color-base;
-  height: var(--doc-height);
+  min-height: var(--doc-height);
+}
+::view-transition-old(root) {
+  animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
 }
 </style>

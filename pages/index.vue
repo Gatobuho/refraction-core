@@ -1,22 +1,5 @@
 <script setup lang="ts">
-const changingWidthSource = ref(100)
-const changingWidthOutput = useTransition(changingWidthSource, {
-  duration: 1000,
-})
-const changingWidth = computed(() => `${changingWidthOutput.value}%`)
 
-const changingClock = ref<ReturnType<typeof setInterval>>()
-
-onMounted(() => {
-  changingClock.value = setInterval(() => {
-    const randomWidth = Math.round(Math.random() * 100)
-    changingWidthSource.value = Math.max((Math.min(randomWidth, 100)), 25)
-  }, 1000 * 5)
-})
-
-onBeforeMount(() => {
-  clearInterval(changingClock.value)
-})
 </script>
 
 <template>

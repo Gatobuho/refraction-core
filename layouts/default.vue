@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="layout">
+  <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
     <RHeader />
     <main class="content">
       <slot />
@@ -11,9 +11,3 @@
     <RFooter />
   </div>
 </template>
-
-<style scoped lang="postcss">
-.layout {
-  @apply grid grid-rows-[auto_1fr_auto] min-h-screen;
-}
-</style>
